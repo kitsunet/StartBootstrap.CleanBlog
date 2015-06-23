@@ -1,0 +1,51 @@
+# If you need more than just the "main" content area you can uncomment the snippet below. It will add a "sidebar" area
+# to your pages. You can add as many areas as you like, still only those that are rendered in your TypoScript and
+# Template are visible on your page.
+---
+'TYPO3.Neos.NodeTypes:Page':
+  ui:
+    inspector:
+      groups:
+        'document':
+          label: 'Page Properties'
+  properties:
+    headerImage:
+      type: 'TYPO3\Media\Domain\Model\ImageInterface'
+      ui:
+        label: 'Header image'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'document'
+    subheader:
+      type: string
+      ui:
+        inlineEditable: TRUE
+
+'StartBootstrap.CleanBlog:BlogPost':
+  superTypes:
+    'TYPO3.Neos.NodeTypes:Page': TRUE
+  ui:
+    label: Blog Post
+#  childNodes:
+#    'sidebar':
+#      type: 'TYPO3.Neos:ContentCollection'
+
+'StartBootstrap.CleanBlog:Section':
+  superTypes:
+    'TYPO3.Neos:Content': TRUE
+  ui:
+    label: 'Section'
+    inlineEditable: TRUE
+  childNodes:
+    'sectioncontent':
+      type: 'TYPO3.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': FALSE
+          'TYPO3.Neos.NodeTypes:Text': TRUE
+
+'StartBootstrap.CleanBlog:BlogList':
+  superTypes:
+    'TYPO3.Neos:Content': TRUE
+  ui:
+    label: 'Blog Liste'

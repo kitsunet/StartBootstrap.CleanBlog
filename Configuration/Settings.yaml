@@ -1,0 +1,18 @@
+TYPO3:
+  TYPO3CR:
+    contentDimensions:
+      'language':
+        label: 'Language'
+        icon: 'icon-language'
+        default: 'en_US'
+        defaultPreset: 'en_US'
+        presets:
+          'all': ~
+          'en_US':
+            label: 'English (US)'
+            values: ['en_US']
+            uriSegment: 'en'
+          'de':
+            label: 'German'
+            values: ['de', 'en_US']
+            uriSegment: 'de'

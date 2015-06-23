@@ -1,0 +1,56 @@
+prototype(StartBootstrap.CleanBlog:BlogList) {
+	blogPosts = ${q(node).closest('[instanceof TYPO3.Neos:Document]').children('[instanceof StartBootstrap.CleanBlog:BlogPost]')}
+}
+
+prototype(StartBootstrap.CleanBlog:Section) {
+	sectionContent = TYPO3.Neos:ContentCollection {
+		nodePath = 'sectioncontent'
+	}
+}
+
+/**
+ * Root TypoScript template for the My Blog site
+ */
+page = Page {
+	head {
+		stylesheets.site = TYPO3.TypoScript:Template {
+			templatePath = 'resource://StartBootstrap.CleanBlog/Private/Templates/Page/Default.html'
+			sectionName = 'stylesheets'
+		}
+
+		javascripts.site = TYPO3.TypoScript:Template {
+			templatePath = 'resource://StartBootstrap.CleanBlog/Private/Templates/Page/Default.html'
+			sectionName = 'headScripts'
+		}
+	}
+
+	body {
+		templatePath = 'resource://StartBootstrap.CleanBlog/Private/Templates/Page/Default.html'
+		sectionName = 'body'
+
+		subheader = ${q(node).property('subheader')}
+
+		parts {
+			menu = Menu {
+				templatePath = 'resource://StartBootstrap.CleanBlog/Private/Templates/TypoScriptObjects/MainMenu.html'
+				entryLevel = 1
+				attributes.class = 'nav navbar-nav navbar-right'
+			}
+
+
+			breadcrumb = Breadcrumb
+		}
+		// These are your content areas, you can define as many as you want, just name them and the nodePath.
+		content {
+			// The default content section
+			main = PrimaryContent {
+				nodePath = 'main'
+			}
+		}
+
+		javascripts.site = TYPO3.TypoScript:Template {
+			templatePath = 'resource://StartBootstrap.CleanBlog/Private/Templates/Page/Default.html'
+			sectionName = 'bodyScripts'
+		}
+	}
+}
